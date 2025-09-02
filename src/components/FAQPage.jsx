@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { HelpCircle, ChevronDown, ChevronUp, MessageSquare, FileQuestion, Settings, Zap, AlertCircle, BookOpen, FileJson } from 'lucide-react'
+import { HelpCircle, ChevronDown, ChevronUp, MessageSquare, FileQuestion, Settings, Zap, AlertCircle, BookOpen, FileJson, Download } from 'lucide-react'
 
 const FAQPage = () => {
   const [activeCategory, setActiveCategory] = useState(1);
@@ -302,6 +302,39 @@ const FAQPage = () => {
                 </div>
               </CardContent>
             </Card>
+            
+            {/* 시작하기 섹션에만 매뉴얼 다운로드 버튼 추가 */}
+            {activeCategory === 1 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mt-6"
+              >
+                <Card className="shadow-xl bg-gradient-to-r from-blue-50 to-indigo-50">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className="p-3 bg-blue-100 rounded-lg">
+                          <Download className="h-6 w-6 text-blue-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-lg text-gray-900">향기펀치님 매뉴얼</h3>
+                          <p className="text-sm text-gray-600 mt-1">AIFI 사용법이 담긴 상세 매뉴얼을 다운로드하세요</p>
+                        </div>
+                      </div>
+                      <Button
+                        onClick={() => window.open('https://drive.google.com/drive/folders/1JwuGSMwpN7be1RB9pn6viO8n0Va5h8Cq?usp=sharing', '_blank')}
+                        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 font-medium"
+                      >
+                        <Download className="h-5 w-5 mr-2 animate-bounce" />
+                        매뉴얼 다운받기
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </div>
