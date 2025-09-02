@@ -1,0 +1,72 @@
+# JSON 에디터 사용 가이드
+
+이 문서는 하루오프님이 개발하고 향기펀치님이 제작한 JSON 에디터 사용법을 누구나 쉽게 이해할 수 있도록 재구성한 가이드입니다.
+
+## 1. JSON 에디터 소개 및 접속 방법
+
+JSON 에디터는 광고 없이 꼭 필요한 기능만 담아 만들어진 편리한 도구입니다. AiFi 프레임워크를 통해 간편하게 접속할 수 있습니다.
+
+**접속 방법:**
+
+1.  [AiFi 프레임워크](https://aifi.ai.kr/)에 접속합니다.
+2.  화면 우측 상단의 'TOOL' 메뉴를 클릭하거나, 마우스 스크롤을 내려 'JSON 에디터'를 찾아 클릭합니다.
+
+![JSON 에디터 위치](https://private-us-east-1.manuscdn.com/sessionFile/Te3GyxhpMaP0UuR1t1ux2S/sandbox/nmhKiCVgCjTUyO0LqOPwgM-images_1756821266041_na1fn_L2hvbWUvdWJ1bnR1L2pzb25fZWRpdG9yX2d1aWRlLzAwMw.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGUzR3l4aHBNYVAwVXVSMXQxdXgyUy9zYW5kYm94L25taEtpQ1ZnQ2pUVXlPMExxT1B3Z00taW1hZ2VzXzE3NTY4MjEyNjYwNDFfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwycHpiMjVmWldScGRHOXlYMmQxYVdSbEx6QXdNdy53ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=KMLJGPXLBt4a2r~ylk-BXhHH87whRmdcaCfLxXIfKhm7yXap3EKEN5OwgRAhhWS33SfaWWkhcgID0t4eRlzLAU9WVQbOBrk430b8BqxpfVi53E4U8Xc6fXOpacxG11ypu0MNbR6MyS1ge6sSavzTvWsrP561RlSJIoIhcu2PZCevFfWv5dhEfg8W-xmfZ-s-4Yk3oFLxeNf-k94Vh6FKJBzuWvya1nw5c3CnJvgXyiFf~~QEMnZ6g8ZSleF0LkeTwc6FX5SBjmApDShJwTeQu8ipWN5bVvfkokocjoUEY1ABXrN~-KBvVMeKf~CVaGHVPqrOnqCIk7iWjAAUBI6RiA__)
+
+
+
+
+## 2. JSON 에디터 기본 사용법
+
+JSON 에디터의 기본적인 사용법은 매우 간단합니다. 아래의 순서에 따라 쉽게 사용해 보세요.
+
+**1. 기존 내용 지우기**
+
+에디터에 기본적으로 입력되어 있는 내용은 '지우기' 버튼을 클릭하여 깔끔하게 비울 수 있습니다.
+
+![기존 내용 지우기](https://private-us-east-1.manuscdn.com/sessionFile/Te3GyxhpMaP0UuR1t1ux2S/sandbox/nmhKiCVgCjTUyO0LqOPwgM-images_1756821266042_na1fn_L2hvbWUvdWJ1bnR1L2pzb25fZWRpdG9yX2d1aWRlLzAwNA.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGUzR3l4aHBNYVAwVXVSMXQxdXgyUy9zYW5kYm94L25taEtpQ1ZnQ2pUVXlPMExxT1B3Z00taW1hZ2VzXzE3NTY4MjEyNjYwNDJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwycHpiMjVmWldScGRHOXlYMmQxYVdSbEx6QXdOQS53ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=FRut5pGfkjmU62aiBlCxCE142iAcQ5BwM1~gwP6xHU6K2z15ntJxL2IrIHd~4ees-Z6N0Zbk0kexuKQFB-I4uikS1JrAvwBoTAzpcYl7B-sshz5UhULm9OwvDTFlfs~-YmWYZPJ82mr2fv8K4nmGeszVrZryVurzR65VacFtBblUtr0v4FQ71xkU~jxji-ZBWBL9P4oT~7K5kYubZZcfUAgh-T7fjtVK~FOvxbnWnuzCeYVdx75KDeR-emr6Msth-7DEOQJZqXEuf43Yc58bj4QtWOy4dDs-wgddKV7ISyvHBUSFQF6SZ0SM~KPcTGZqBbfaBf2nk-uwKdQcx3ZKOA__)
+
+**2. JSON 코드 붙여넣기**
+
+젬(Gem)의 각 스테이지에서 생성된 JSON 파일의 '복사' 버튼을 클릭한 후, JSON 에디터의 가운데 화면에서 마우스 오른쪽 버튼을 클릭하여 '붙여넣기(Paste)'를 선택합니다.
+
+![JSON 코드 복사](https://private-us-east-1.manuscdn.com/sessionFile/Te3GyxhpMaP0UuR1t1ux2S/sandbox/nmhKiCVgCjTUyO0LqOPwgM-images_1756821266042_na1fn_L2hvbWUvdWJ1bnR1L2pzb25fZWRpdG9yX2d1aWRlLzAwNg.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGUzR3l4aHBNYVAwVXVSMXQxdXgyUy9zYW5kYm94L25taEtpQ1ZnQ2pUVXlPMExxT1B3Z00taW1hZ2VzXzE3NTY4MjEyNjYwNDJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwycHpiMjVmWldScGRHOXlYMmQxYVdSbEx6QXdOZy53ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=B1DgDX~dwdhM3mQTTr1NLQd6Sr0gWelIE7txn1HNg1j0I6HQB~J6fmpHCqJeeJrFJ39CzZDrEZtxgVRgGwhYWhZHYZkiUpSYC4Kbg94Igf589Qd6wv78PI79JT0yt3PvxQgvPm6NuwMVD4QCwBnQByEYsnzVQyYhVMRrzYwfZ2EUcG3oCQawuVAQCYnnlLfZSl5EeVWS3NHQ89iSf3nB~M1o30zoDTW6HaTssTNHhiV9iKFV9McBzDuSaeht~S~tRgYQvbB0i0aAUe2KxPX0cKwEjdn2jjEIgVvUWohFKtWaMFhWrSq2C6jhyxQrfr3Wn7iHb-aHo29-1UjPN1o6KQ__)
+![JSON 코드 붙여넣기](https://private-us-east-1.manuscdn.com/sessionFile/Te3GyxhpMaP0UuR1t1ux2S/sandbox/nmhKiCVgCjTUyO0LqOPwgM-images_1756821266043_na1fn_L2hvbWUvdWJ1bnR1L2pzb25fZWRpdG9yX2d1aWRlLzAwNw.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGUzR3l4aHBNYVAwVXVSMXQxdXgyUy9zYW5kYm94L25taEtpQ1ZnQ2pUVXlPMExxT1B3Z00taW1hZ2VzXzE3NTY4MjEyNjYwNDNfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwycHpiMjVmWldScGRHOXlYMmQxYVdSbEx6QXdOdy53ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=sMMGAg8f~6mHZmXfhGpJZNbyNJret7NGdFwrHE3Y-oTpyDR0c~2SfpYHqFZLuJN~dee4sSzBFSfXvps5i9TboZsx5ZjHGPuEq897vU5afozg18jF-rpkf7iHea0N~wD~I4luXeyyM3EKukFbqLkEk5uKGUBCXvmT7bXbwkpGpj4QKrrXfaV02U9m44~xx13yu2hzru4FcDKy9LFcOpMyRmLmj7y0YhBTkBjs0zfgWENc73led~dxolajUhGmRPm59ZZI8qAdPo5bV9YH0~s4npMu9~IYJu64zitRarMlpOisMVnNI5ACYCZVmpzYBqmLbIQpdfoizIpUZVm2VBPcqA__)
+
+**3. 유효성 검사 및 다운로드**
+
+붙여넣기가 완료되면 코드의 유효성을 확인합니다. '유효'라고 표시되면 코드가 정상이라는 의미입니다. 확인 후 '다운로드' 버튼을 클릭하여 파일을 저장합니다. 파일명을 지정하고 각 스테이지별로 저장하면 편리하게 관리할 수 있습니다.
+
+![유효성 검사 및 다운로드](https://private-us-east-1.manuscdn.com/sessionFile/Te3GyxhpMaP0UuR1t1ux2S/sandbox/nmhKiCVgCjTUyO0LqOPwgM-images_1756821266043_na1fn_L2hvbWUvdWJ1bnR1L2pzb25fZWRpdG9yX2d1aWRlLzAwOA.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGUzR3l4aHBNYVAwVXVSMXQxdXgyUy9zYW5kYm94L25taEtpQ1ZnQ2pUVXlPMExxT1B3Z00taW1hZ2VzXzE3NTY4MjEyNjYwNDNfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwycHpiMjVmWldScGRHOXlYMmQxYVdSbEx6QXdPQS53ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=lGginrwX~AmTVkt1t~6VHmr0rjcQB-3APUnQO~VAte9lpgGFpXHFCHcXWKXdvYiEYqbprPbfiKLCJuJcSzugoU7e659wfUGG4fkimDu1kNrmSpk1N082bfVVADq26ulCiLhm3FcKVuAz2baembJCSprq1UnQlIyeQR5jZVyJnvtvMVq~YHNtDbepLunhT62TN56vZMmGC93MWnrFI~kVagVZ6nWRcTCld3au89GNFTuOGXVrXxWv0zyBpyn1T~PxqEknlMQymHjRIk1QuKgRAJsHlZiPyoOAa88qFl-dYBcWANRGF6O6A9WclLI3m16Vu9qKrB7EfMGxFOP7YAyvQQ__)
+![파일 저장](https://private-us-east-1.manuscdn.com/sessionFile/Te3GyxhpMaP0UuR1t1ux2S/sandbox/nmhKiCVgCjTUyO0LqOPwgM-images_1756821266044_na1fn_L2hvbWUvdWJ1bnR1L2pzb25fZWRpdG9yX2d1aWRlLzAwOQ.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGUzR3l4aHBNYVAwVXVSMXQxdXgyUy9zYW5kYm94L25taEtpQ1ZnQ2pUVXlPMExxT1B3Z00taW1hZ2VzXzE3NTY4MjEyNjYwNDRfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwycHpiMjVmWldScGRHOXlYMmQxYVdSbEx6QXdPUS53ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=t8IqWzUBceBM33-eB95P3EZ1YzaILYWq1M0JAGIuxla9nvSKDSSszPRx4xStB6CGKc5zueTpeKYwN729agvRoz0xkMUX7tM7btN2dSMOFEgmU25~qctxTrXzMnozf~eVcZuFx5AIG~hx8jFq6SYqY5eKx5Dxa~i9M3j9JBwRdmwiRGBa8aseJRcyfyMb6bMFsZktzYQ6vhzbgkX1HxCB997GW7eum9-vlWTlr3Vdm~jdomcqqnpz7bIziCkiWwZhBBeQPC6~2StZobk2~PJoq28r10XT3qGIYssh1xgnjhhtcv0IsctFaEVLshBdETmFwxPu8Dc9OO1haEsiTW075A__)
+
+
+
+
+## 3. JSON 코드 오류 시 대처 방법
+
+JSON 코드에 오류가 발생했을 경우, 다음과 같은 단계로 대처할 수 있습니다.
+
+**1. 오류 위치 확인**
+
+에디터에서 오류가 발생한 위치를 알려줍니다. (예: 306번째 줄 1번째 열) 이 정보를 바탕으로 오류를 수정해야 합니다.
+
+**2. 젬(Gem)에게 오류 수정 요청**
+
+오류가 발생한 경우, 다시 젬(Gem)의 해당 스테이지 채팅창으로 돌아가 오류 위치를 알려주고 수정을 요청합니다. 여러 개의 오류가 있다면 모두 알려주는 것이 좋습니다.
+
+**3. 수정된 코드로 다시 작업**
+
+젬(Gem)이 코드를 수정해주면, 다시 복사하여 JSON 에디터에서 이전과 동일한 방법으로 붙여넣고 유효성을 검사한 후 다운로드합니다. 오류가 발생했던 화면은 '지우기' 버튼으로 비운 후 진행하면 됩니다.
+
+## 4. 기존 파일 열기
+
+'파일 열기' 기능을 사용하면 기존에 저장했던 JSON 파일을 불러와 확인하거나 수정할 수 있습니다. 하지만 코드 수정이 익숙하지 않다면 확인용으로만 사용하는 것을 권장합니다.
+
+
+
+---
+
+이 가이드가 JSON 에디터를 사용하는 데 도움이 되기를 바랍니다.
+
+

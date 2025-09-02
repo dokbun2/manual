@@ -22,12 +22,12 @@ const GemGuidePage = () => {
     },
     {
       id: 2,
-      title: "[스테이지2] 시나리오 작성단계",
-      shortTitle: "CF프레임워크",
+      title: "JSON EDITOR 사용방법",
+      shortTitle: "JSON EDITOR 사용법",
       icon: <Edit className="h-5 w-5" />,
       displayIcon: <Edit className="h-8 w-8 text-green-600" />,
       content: "시놉시스를 바탕으로 구체적인 시나리오를 작성하는 단계입니다. 스테이지1에서 창출한 아이디어를 활용하여 장면별 대사, 동작, 감정선을 상세하게 구성합니다. AIFI는 시나리오 작성 템플릿과 포맷팅 도구를 제공하여 전문적인 스크립트를 효율적으로 완성할 수 있도록 지원합니다.",
-      process: "1번 넣기 - 시놉시스를 바탕으로 작성"
+      process: "JSON 에디터를 사용하는 방법"
     }
   ];
   
@@ -101,7 +101,7 @@ const GemGuidePage = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">GEM지침</h2>
             <p className="text-sm text-gray-600 mb-6">GEMINI 스테이지별 가이드</p>
             <nav className="space-y-2">
-              {stages.map((stage) => (
+              {stages.filter(stage => stage.id !== 2).map((stage) => (
                 <Button
                   key={stage.id}
                   variant={activeStage === stage.id ? "default" : "ghost"}
@@ -137,8 +137,8 @@ const GemGuidePage = () => {
                       {currentStage.displayIcon}
                     </div>
                     <div>
-                      <CardTitle className="text-2xl">1단계 : 젬 지침 만드는 방법</CardTitle>
-                      <div className="text-sm text-gray-500 mt-1">아래를 보시고 천천히 따라하세요</div>
+                      <CardTitle className="text-2xl">JSON EDITOR 사용법</CardTitle>
+                      <div className="text-sm text-gray-500 mt-1">아래를 보시고 쉽게 아실 수 있으세요</div>
                     </div>
                   </div>
                 </CardHeader>
@@ -176,8 +176,8 @@ const GemGuidePage = () => {
                         <h3 className="text-gray-800 font-bold mb-3 text-xl">2. 젬 지침 제목 참조</h3>
                         <div className="space-y-2">
                           {[
-                            "[스테이지1] 시놉시스 아이디어 창출단계(시작)",
-                            "[스테이지2] 시나리오 작성단계(1번 넣기)",
+                            "영화&CF프레임워크 지침만들기",
+                            "JSON EDITOR 사용방법",
                             "[스테이지3] 컨셉아트 단계(2번 넣기)",
                             "[스테이지4] 컨셉아트 프롬프트 생성단계(3번 넣기)",
                             "[스테이지5] 장면분할 단계(2,4번 넣기)",
@@ -221,21 +221,6 @@ const GemGuidePage = () => {
                     <p className="text-blue-800">{currentStage.process}</p>
                   </div>
 
-                  <div className="mt-6 flex justify-between">
-                    <Button 
-                      variant="outline"
-                      onClick={() => activeStage > 1 && setActiveStage(activeStage - 1)}
-                      disabled={activeStage === 1}
-                    >
-                      이전 스테이지
-                    </Button>
-                    <Button 
-                      onClick={() => activeStage < 2 && setActiveStage(activeStage + 1)}
-                      disabled={activeStage === 2}
-                    >
-                      다음 스테이지
-                    </Button>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
