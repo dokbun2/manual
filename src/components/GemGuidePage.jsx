@@ -16,7 +16,6 @@ const GemGuidePage = () => {
       title: "▶ 1단계 : 젬 지침 만들기",
       shortTitle: "영화 & CF 공통사항",
       icon: <BookOpen className="h-5 w-5" />,
-      displayIcon: <BookOpen className="h-8 w-8 text-blue-600" />,
       content: "👉 위의 스테이지별 젬 제목은 사용하시기 편하게 우측 끝에 복사버튼을 만들어놓았습니다.",
       process: "이제 영화와 CF의 젬지침을 설정하셨으면 젬에서 JSON 파일을 출력하여 멋진 영상 만드세요"
     }
@@ -30,7 +29,6 @@ const GemGuidePage = () => {
       title: "[스테이지3] 컨셉아트 단계",
       shortTitle: "컨셉아트",
       icon: <Palette className="h-5 w-5" />,
-      displayIcon: <Palette className="h-8 w-8 text-purple-600" />,
       content: "시나리오를 시각적으로 구현하기 위한 컨셉아트 제작 단계입니다. 스테이지2에서 작성한 시나리오를 바탕으로 주요 장면의 비주얼 컨셉, 색감, 분위기를 설정합니다. AIFI의 아트 도구와 레퍼런스 시스템을 활용하여 영상의 전체적인 톤앤매너를 확립할 수 있습니다.",
       process: "2번 넣기 - 시나리오 기반 비주얼 설정"
     },
@@ -39,7 +37,6 @@ const GemGuidePage = () => {
       title: "[스테이지4] 컨셉아트 프롬프트 생성단계",
       shortTitle: "아트 프롬프트",
       icon: <Wand2 className="h-5 w-5" />,
-      displayIcon: <Wand2 className="h-8 w-8 text-orange-600" />,
       content: "컨셉아트를 AI로 생성하기 위한 프롬프트 작성 단계입니다. 스테이지3에서 설정한 비주얼 컨셉을 구체적인 AI 프롬프트로 변환합니다. AIFI의 프롬프트 최적화 도구를 활용하여 원하는 스타일과 분위기를 정확하게 표현할 수 있는 텍스트 명령어를 생성합니다.",
       process: "3번 넣기 - 컨셉아트를 프롬프트로 변환"
     },
@@ -48,7 +45,6 @@ const GemGuidePage = () => {
       title: "[스테이지5] 장면분할 단계",
       shortTitle: "장면분할",
       icon: <Layers className="h-5 w-5" />,
-      displayIcon: <Layers className="h-8 w-8 text-pink-600" />,
       content: "시나리오와 컨셉아트 프롬프트를 바탕으로 영상을 세부 장면으로 분할하는 단계입니다. 스테이지2의 시나리오와 스테이지4의 프롬프트를 활용하여 각 장면의 시작과 끝, 전환점을 명확하게 정의합니다. AIFI의 스토리보드 도구로 장면별 타이밍과 연출을 체계적으로 계획할 수 있습니다.",
       process: "2,4번 넣기 - 시나리오와 프롬프트 통합"
     },
@@ -57,7 +53,6 @@ const GemGuidePage = () => {
       title: "[스테이지6] 이미지프롬프트 생성단계",
       shortTitle: "이미지 프롬프트",
       icon: <Image className="h-5 w-5" />,
-      displayIcon: <Image className="h-8 w-8 text-indigo-600" />,
       content: "각 장면에 필요한 이미지를 생성하기 위한 상세 프롬프트 작성 단계입니다. 스테이지4의 컨셉아트 프롬프트와 스테이지5의 장면분할 정보를 통합하여 각 장면별로 구체적인 이미지 생성 프롬프트를 만듭니다. AIFI의 프롬프트 라이브러리와 최적화 기능으로 일관성 있는 비주얼을 구현할 수 있습니다.",
       process: "4,5번 넣기 - 장면별 이미지 프롬프트 생성"
     },
@@ -66,7 +61,6 @@ const GemGuidePage = () => {
       title: "[스테이지7] 영상 프롬프트 생성단계",
       shortTitle: "영상 프롬프트",
       icon: <Film className="h-5 w-5" />,
-      displayIcon: <Film className="h-8 w-8 text-teal-600" />,
       content: "정적인 이미지를 동적인 영상으로 변환하기 위한 프롬프트 작성 단계입니다. 스테이지5의 장면분할과 스테이지6의 이미지프롬프트를 결합하여 카메라 움직임, 트랜지션, 애니메이션 효과를 포함한 영상 생성 프롬프트를 만듭니다. AIFI의 모션 템플릿과 타이밍 도구로 생동감 있는 영상을 제작할 수 있습니다.",
       process: "5,6번 넣기 - 동적 영상 프롬프트 생성"
     },
@@ -75,7 +69,6 @@ const GemGuidePage = () => {
       title: "[스테이지8] 오디오 프롬프트 생성단계",
       shortTitle: "오디오 프롬프트",
       icon: <Music className="h-5 w-5" />,
-      displayIcon: <Music className="h-8 w-8 text-red-600" />,
       content: "영상에 어울리는 오디오 요소를 생성하기 위한 프롬프트 작성 단계입니다. 스테이지5의 장면분할 정보를 활용하여 배경음악, 효과음, 앰비언스 사운드 등의 오디오 프롬프트를 생성합니다. AIFI의 사운드 디자인 도구와 음향 라이브러리로 영상의 몰입감을 극대화할 수 있습니다.",
       process: "5번 넣기 - 장면별 오디오 프롬프트 생성"
     }
@@ -124,11 +117,6 @@ const GemGuidePage = () => {
               <Card className="shadow-xl">
                 <CardHeader>
                   <div className="flex items-center space-x-4">
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                      {currentStage.displayIcon}
-                    </div>
-                    <div>
-                    </div>
                   </div>
                 </CardHeader>
                 
