@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
+import { Card, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check } from 'lucide-react'
 import gemGuideImage from '@/assets/Snipaste_2025-09-02_18-36-17.jpg'
@@ -115,19 +115,14 @@ const GemGuidePage = () => {
               </div>
 
               <Card className="shadow-xl">
-                <CardHeader>
-                  <div className="flex items-center space-x-4">
-                  </div>
-                </CardHeader>
-                
                 {/* 이미지 섹션 추가 - 스테이지 1일 때만 표시 */}
                 {activeStage === 1 && (
-                  <div className="px-6 py-4">
+                  <div className="px-6 pt-6 pb-4">
                     <div className="w-full space-y-4">
                       {/* 텍스트 섹션 */}
                       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg">
                         <h2 className="text-gray-800 text-xl font-bold mb-2">1. 제미나이 로그인을 하고 젬 지침을 생성합니다.</h2>
-                        <p className="text-gray-600 text-sm">젬 지침을 업로드할때 헷갈리시는 부분이 있으시니 아래를 보고 차분히 따라하세요</p>
+                        <p className="text-gray-600 text-sm">젬 지침을 만드실때는 차분하게 아래의 예시 사진을 보시고 천천히 따라오세요</p>
                       </div>
                       
                       {/* Gem 생성 가이드 이미지 (위) */}
@@ -150,7 +145,7 @@ const GemGuidePage = () => {
                       
                       {/* 젬 지침 제목 참조 */}
                       <div className="bg-gray-50 p-4 rounded-lg">
-                        <h3 className="text-gray-800 font-bold mb-3 text-xl">2. 젬 지침 제목 참조 (사용자에 따라 변경가능)</h3>
+                        <h3 className="text-gray-800 font-bold mb-3 text-xl">2. 젬 지침 제목예시 (사용자에 따라 변경가능)</h3>
                         <div className="space-y-2">
                           {[
                             "[스테이지1] 아이디어 및 콘셉 도출단계",
