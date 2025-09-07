@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check, FileText, CheckCircle, FileJson, AlertTriangle } from 'lucide-react'
+import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check, FileText, CheckCircle, FileJson, AlertTriangle, Play, Clock, ExternalLink } from 'lucide-react'
 import gemGuideImage from '@/assets/Snipaste_2025-09-02_18-36-17.jpg'
 import overlayImage from '@/assets/2.jpg'
 import stage2Image from '@/assets/stage2.jpg'

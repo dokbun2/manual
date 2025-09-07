@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { HelpCircle, ChevronDown, ChevronUp, MessageSquare, FileQuestion, Settings, Zap, AlertCircle, BookOpen, FileJson, Download } from 'lucide-react'
+import { HelpCircle, ChevronDown, ChevronUp, FileQuestion, Settings, AlertCircle, BookOpen, FileJson, Download, ExternalLink } from 'lucide-react'
 
 const FAQPage = () => {
   const [activeCategory, setActiveCategory] = useState(1);
@@ -32,24 +32,10 @@ const FAQPage = () => {
     },
     {
       id: 4,
-      title: "프롬프트 작성",
-      shortTitle: "프롬프트",
-      icon: <MessageSquare className="h-5 w-5" />,
-      displayIcon: <MessageSquare className="h-8 w-8 text-purple-600" />
-    },
-    {
-      id: 5,
       title: "문제 해결",
       shortTitle: "문제 해결",
       icon: <AlertCircle className="h-5 w-5" />,
       displayIcon: <AlertCircle className="h-8 w-8 text-orange-600" />
-    },
-    {
-      id: 6,
-      title: "고급 기능",
-      shortTitle: "고급 기능",
-      icon: <Zap className="h-5 w-5" />,
-      displayIcon: <Zap className="h-8 w-8 text-pink-600" />
     }
   ];
 
@@ -113,20 +99,6 @@ const FAQPage = () => {
     ],
     4: [
       {
-        question: "프롬프트에 어떤 내용을 포함해야 하나요?",
-        answer: "프롬프트에는 다음 요소들을 포함하세요:\n- 장면의 분위기와 톤\n- 등장인물의 표정과 동작\n- 카메라 앵글과 구도\n- 조명과 색감\n- 배경과 소품 설명"
-      },
-      {
-        question: "프롬프트 길이는 어느 정도가 적당한가요?",
-        answer: "일반적으로 3-5문장 정도가 적당합니다. 너무 짧으면 디테일이 부족하고, 너무 길면 AI가 중요한 요소를 놓칠 수 있습니다. 핵심 요소를 명확하고 간결하게 표현하는 것이 중요합니다."
-      },
-      {
-        question: "이전 단계의 결과물을 어떻게 활용하나요?",
-        answer: "각 스테이지는 이전 단계의 결과물을 기반으로 합니다. 예를 들어 스테이지5는 스테이지2와 4의 결과를 함께 사용합니다. 괄호 안의 번호(예: 2,4번 넣기)를 참고하여 해당 결과물을 입력하세요."
-      }
-    ],
-    5: [
-      {
         question: "생성된 결과물이 마음에 들지 않아요",
         answer: "프롬프트를 수정하여 다시 시도해보세요. 특히 다음 사항을 점검하세요:\n- 프롬프트가 너무 추상적이지 않은지\n- 상충되는 요구사항이 없는지\n- 핵심 키워드가 명확한지\n여러 번 시도해도 개선되지 않으면 이전 단계로 돌아가 기초 설정을 수정해보세요."
       },
@@ -137,20 +109,6 @@ const FAQPage = () => {
       {
         question: "저장이 되지 않아요",
         answer: "자동 저장 기능이 작동하지 않는다면:\n1. 인터넷 연결 상태를 확인하세요.\n2. 브라우저의 쿠키와 로컬 스토리지가 활성화되어 있는지 확인하세요.\n3. 수동으로 복사하여 별도 문서에 백업해두세요."
-      }
-    ],
-    6: [
-      {
-        question: "커스텀 스타일을 적용할 수 있나요?",
-        answer: "네, 가능합니다. 각 프롬프트에 특정 아트 스타일, 색상 팔레트, 참조 작품 등을 명시하여 일관된 비주얼 스타일을 유지할 수 있습니다. 예: 'Studio Ghibli style', 'noir atmosphere', 'pastel color palette' 등"
-      },
-      {
-        question: "여러 프로젝트를 동시에 관리할 수 있나요?",
-        answer: "각 프로젝트별로 별도의 젬 세트를 생성하여 관리할 수 있습니다. 프로젝트명을 젬 제목에 포함시키면 구분이 쉬워집니다. 예: '[프로젝트A] 스테이지1 시놉시스'"
-      },
-      {
-        question: "결과물을 다른 AI 도구와 연동할 수 있나요?",
-        answer: "네, AIFI에서 생성된 프롬프트는 Midjourney, DALL-E, Stable Diffusion 등 다양한 AI 이미지/영상 생성 도구에서 활용 가능합니다. 각 도구의 특성에 맞게 프롬프트를 약간 수정하면 더 좋은 결과를 얻을 수 있습니다."
       }
     ]
   };
@@ -184,6 +142,18 @@ const FAQPage = () => {
                   <span className="ml-2 text-sm">{category.shortTitle}</span>
                 </Button>
               ))}
+              
+              {/* NAVER FAQ 이동 버튼 */}
+              <div className="pt-4 border-t border-gray-200">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start text-left border-2 border-green-300 hover:bg-green-50 hover:border-green-400 text-green-700 hover:text-green-800"
+                  onClick={() => window.open('https://cafe.naver.com/f-e/cafes/31511526/menus/90?viewType=L', '_blank')}
+                >
+                  <ExternalLink className="h-5 w-5" />
+                  <span className="ml-2 text-sm font-medium">NAVER FAQ 이동</span>
+                </Button>
+              </div>
             </nav>
           </div>
         </div>
