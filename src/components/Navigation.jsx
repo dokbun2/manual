@@ -9,9 +9,8 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navItems = [
-    { path: '/gem-guide', label: 'GEM지침' },
-    { path: '/storyboard', label: '스토리보드' },
-    { path: '/concept-art', label: '컨셉아트' },
+    { path: '/gem-guide', label: '사용방법' },
+    { path: '/storyboard', label: 'JSON출력' },
     { path: '/faq', label: '자주묻는질문' }
   ]
 

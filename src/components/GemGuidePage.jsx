@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check } from 'lucide-react'
+import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check, FileText, CheckCircle } from 'lucide-react'
 import gemGuideImage from '@/assets/Snipaste_2025-09-02_18-36-17.jpg'
 import overlayImage from '@/assets/2.jpg'
+import stage2Image from '@/assets/stage2.jpg'
 
 const GemGuidePage = () => {
   const [activeStage, setActiveStage] = useState(1);
@@ -13,11 +14,19 @@ const GemGuidePage = () => {
   const stages = [
     {
       id: 1,
-      title: "▶ 1단계 : 젬 지침 만들기",
-      shortTitle: "영화 & CF 공통사항",
+      title: "▶ 1단계 : 젬 지침 만들기 - 영화 & CF 공통사항",
+      shortTitle: "1단계 : 젬지침 만들기",
       icon: <BookOpen className="h-5 w-5" />,
       content: "👉 위의 스테이지별 젬 제목은 사용하시기 편하게 우측 끝에 복사버튼을 만들어놓았습니다.",
       process: "이제 영화와 CF의 젬지침을 설정하셨으면 젬에서 JSON 파일을 출력하여 멋진 영상 만드세요"
+    },
+    {
+      id: 2,
+      title: "2단계 : AIFI 프레임워크란?",
+      shortTitle: "2단계 : AIFI 프레임워크란?",
+      icon: <Film className="h-5 w-5" />,
+      content: "AIFI 프레임워크를 활용한 체계적인 영상 제작 프로세스를 단계별로 안내합니다.",
+      process: "AIFI 프레임워크에 입문하기 전에 간단하게 Workflow를 확인하세요"
     }
   ];
   
@@ -82,10 +91,10 @@ const GemGuidePage = () => {
         {/* Sidebar */}
         <div className="w-80 bg-white shadow-lg border-r border-gray-200 fixed h-full overflow-y-auto">
           <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">GEM지침</h2>
-            <p className="text-sm text-gray-600 mb-6">GEMINI 스테이지별 가이드</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">사용방법</h2>
+            <p className="text-sm text-gray-600 mb-6">초보자 기초자료</p>
             <nav className="space-y-2">
-              {stages.filter(stage => stage.id !== 2).map((stage) => (
+              {stages.map((stage) => (
                 <Button
                   key={stage.id}
                   variant={activeStage === stage.id ? "default" : "ghost"}
@@ -184,14 +193,183 @@ const GemGuidePage = () => {
                 )}
                 
                 <CardContent>
-                  <CardDescription className="text-lg leading-relaxed text-gray-700">
-                    {currentStage.content}
-                  </CardDescription>
-                  
-                  <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                    <h3 className="font-semibold text-blue-900 mb-2">▶︎ CF에 들어가는 젬지침도 동일하게 적용하시면 됩니다.</h3>
-                    <p className="text-blue-800">{currentStage.process}</p>
-                  </div>
+                  {activeStage === 1 && (
+                    <>
+                      <CardDescription className="text-lg leading-relaxed text-gray-700">
+                        {currentStage.content}
+                      </CardDescription>
+                      
+                      <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h3 className="font-semibold text-blue-900 mb-2">▶︎ CF에 들어가는 젬지침도 동일하게 적용하시면 됩니다.</h3>
+                        <p className="text-blue-800">{currentStage.process}</p>
+                      </div>
+                    </>
+                  )}
+
+                  {activeStage === 2 && (
+                    <>
+                      <CardDescription className="text-lg leading-relaxed text-gray-700 mb-6">
+                        {currentStage.content}
+                      </CardDescription>
+
+                      {/* 1단계: JSON 파일 생성 및 정리 */}
+                      <div className="mb-8">
+                        <div className="bg-white p-6 rounded-lg border-2 border-blue-200 mb-4">
+                          <h3 className="text-xl font-bold text-blue-900 mb-3 flex items-center">
+                            <FileText className="h-6 w-6 mr-2" />
+                            1단계: JSON 파일 생성 및 정리
+                          </h3>
+                          <p className="text-gray-700">
+                              각 <strong>Stage</strong>별 젬(Gem)에서 생성된 JSON 파일을 <span className="text-red-500">Stage</span>별로 폴더를 만들어 체계적으로 저장합니다.
+                          </p>
+                          <p className="text-gray-700">  특히 <strong>Stage 5</strong>부터는 씬의 개수만큼 JSON 파일이 생성되므로, 씬별로 구분하여 저장하는 것이 중요합니다.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* 2단계: 스토리보드 구성 */}
+                      <div className="mb-8">
+                        <div className="bg-white p-6 rounded-lg border-2 border-purple-200 mb-4">
+                          <h3 className="text-xl font-bold text-purple-900 mb-3 flex items-center">
+                            <Edit className="h-6 w-6 mr-2" />
+                            2단계: 스토리보드 구성
+                          </h3>
+                          <div className="space-y-3 text-gray-700">
+                            <div className="flex items-start">
+                              <div className="bg-purple-100 text-purple-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</div>
+                              <p><strong>Stage 2 JSON 업로드:</strong> 스토리보드 초기 화면에서 Stage 2 JSON을 업로드하여 전체 시나리오와 씬 구성을 확인합니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-purple-100 text-purple-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</div>
+                              <p><strong>Stage 5 JSON 업로드:</strong> 각 씬별 Stage 5 JSON 파일을 모두 업로드하여 샷을 분할합니다.</p>
+                            </div>
+                            
+                            {/* Stage 2 이미지 추가 */}
+                            <div className="mt-4">
+                              <img 
+                                src={stage2Image} 
+                                alt="Stage 2 JSON 업로드 가이드" 
+                                className="w-full rounded-lg shadow-md"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 3단계: 이미지 프롬프트 생성 및 이미지 제작 */}
+                      <div className="mb-8">
+                        <div className="bg-white p-6 rounded-lg border-2 border-green-200 mb-4">
+                          <h3 className="text-xl font-bold text-green-900 mb-3 flex items-center">
+                            <Image className="h-6 w-6 mr-2" />
+                            3단계: 이미지 프롬프트 생성 및 이미지 제작
+                          </h3>
+                          <div className="space-y-3 text-gray-700">
+                            <div className="flex items-start">
+                              <div className="bg-green-100 text-green-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</div>
+                              <p><strong>Stage 6 JSON 업로드:</strong> Stage 6 JSON 파일을 업로드합니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-green-100 text-green-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</div>
+                              <p>분할된 샷을 클릭하면 <strong>이미지 프롬프트</strong>가 생성된 것을 확인할 수 있습니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-green-100 text-green-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">3</div>
+                              <p>이 프롬프트를 복사하여 미드저니 등 이미지 생성 툴에서 이미지를 제작합니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-green-100 text-green-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">4</div>
+                              <p>마음에 드는 이미지의 URL을 복사하여 스토리보드의 해당 샷에 붙여넣습니다.</p>
+                            </div>
+                            <div className="bg-gray-50 p-4 rounded-md border border-gray-200 mt-4">
+                              <p className="text-gray-600 text-sm leading-relaxed">
+                                <strong className="text-red-400">👉 참고:</strong> 업로드한 이미지는 참조용으로만 사용되며, 자동 영상 생성에는 직접적으로 활용되지 않습니다.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 4단계: 영상 프롬프트 생성 및 영상 클립 제작 */}
+                      <div className="mb-8">
+                        <div className="bg-white p-6 rounded-lg border-2 border-orange-200 mb-4">
+                          <h3 className="text-xl font-bold text-orange-900 mb-3 flex items-center">
+                            <Film className="h-6 w-6 mr-2" />
+                            4단계: 영상 프롬프트 생성 및 영상 클립 제작
+                          </h3>
+                          <div className="space-y-3 text-gray-700">
+                            <div className="flex items-start">
+                              <div className="bg-orange-100 text-orange-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</div>
+                              <p><strong>Stage 7 JSON 업로드:</strong> Stage 7 JSON 파일을 업로드합니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-orange-100 text-orange-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</div>
+                              <p>각 샷을 클릭하면 <strong>영상 프롬프트</strong>가 생성됩니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-orange-100 text-orange-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">3</div>
+                              <p>이 프롬프트를 활용하여 영상 생성 툴(Kling 등)에서 영상 클립을 제작합니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-orange-100 text-orange-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">4</div>
+                              <p>생성된 영상 중 마음에 드는 영상의 URL을 복사하여 붙여넣고, 영상 파일은 샷별로 다운로드하여 따로 저장해 둡니다.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 5단계: 오디오 프롬프트 생성 및 음성 제작 */}
+                      <div className="mb-8">
+                        <div className="bg-white p-6 rounded-lg border-2 border-indigo-200 mb-4">
+                          <h3 className="text-xl font-bold text-indigo-900 mb-3 flex items-center">
+                            <Music className="h-6 w-6 mr-2" />
+                            5단계: 오디오 프롬프트 생성 및 음성 제작
+                          </h3>
+                          <div className="space-y-3 text-gray-700">
+                            <div className="flex items-start">
+                              <div className="bg-indigo-100 text-indigo-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</div>
+                              <p><strong>Stage 8 JSON 업로드:</strong> Stage 8 JSON 파일을 업로드합니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-indigo-100 text-indigo-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</div>
+                              <p>각 샷을 클릭하면 <strong>오디오 프롬프트</strong>(나레이션, 대사, 음향효과)가 생성됩니다.</p>
+                            </div>
+                            <div className="flex items-start">
+                              <div className="bg-indigo-100 text-indigo-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">3</div>
+                              <p>이 내용을 바탕으로 음성 생성 툴(일레븐랩스, 수퍼톤 등)에서 음성을 제작하고 다운로드합니다.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 최종 편집 및 완성 */}
+                      <div className="mb-8">
+                        <div className="bg-white p-6 rounded-lg border-2 border-gray-300">
+                          <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
+                            <CheckCircle className="h-6 w-6 mr-2" />
+                            최종 편집 및 완성
+                          </h3>
+                          <div className="space-y-3 text-gray-700">
+                            <p>
+                              프레임워크에서 구성한 스토리보드(시나리오, 이미지, 영상 URL, 오디오 스크립트)를 전체적으로 검토하며 영상의 그림을 완성합니다. 
+                              그 후, 각 샷별로 저장해 둔 영상 클립과 음성 파일들을 <strong>캡컷, 프리미어 프로, 필모라</strong> 등 전문 영상 편집 툴로 가져와 
+                              최종적으로 편집하고 짜집기하여 하나의 완성된 영상을 만듭니다.
+                            </p>
+                            <div className="bg-slate-50 p-4 rounded-md border border-slate-200 mt-4">
+                              <p className="text-black-800 text-sm leading-relaxed">
+                                <strong className="text-red-500">👉 핵심 포인트:</strong> AIFI 프레임워크는 영상제작을 위한 체계적인 설계 도구로서, 
+                                실제 촬영 및 편집 작업은 별도 AI툴을 통해 수행됩니다.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h3 className="font-semibold text-blue-900 mb-2">▶︎ 체계적인 워크플로우로 전문적인 영상을 제작하세요</h3>
+                        <p className="text-blue-800">{currentStage.process}</p>
+                      </div>
+                    </>
+                  )}
 
                 </CardContent>
               </Card>

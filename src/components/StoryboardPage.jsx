@@ -22,15 +22,18 @@ import {
   MapPin
 } from 'lucide-react'
 import warningImage from '@/assets/1-1.jpg'
+import stagefolderImage from '@/assets/stagefolder.jpg'
+import stageguideImage from '@/assets/stageguide.png'
+import stage2Image from '@/assets/stage2.jpg'
 
 const StoryboardPage = () => {
   const [activeSection, setActiveSection] = useState('precautions')
 
   const sidebarItems = [
     { id: 'precautions', label: '주 의 사 항', icon: <AlertTriangle className="h-4 w-4" /> },
-    { id: 'stage2', label: 'Stage 2: AI 내러티브', icon: <Edit className="h-4 w-4" /> },
+    { id: 'stage2', label: 'Stage 2: 아이디어 창출', icon: <Edit className="h-4 w-4" /> },
     { id: 'stage4', label: 'Stage 4: 컨셉아트', icon: <Sparkles className="h-4 w-4" /> },
-    { id: 'stage5', label: 'Stage 5: 샷 분할', icon: <Layers className="h-4 w-4" /> },
+    { id: 'stage5', label: 'Stage 5: 장면 분할', icon: <Layers className="h-4 w-4" /> },
     { id: 'stage6', label: 'Stage 6: 이미지 생성', icon: <Image className="h-4 w-4" /> },
     { id: 'stage7', label: 'Stage 7: 영상 생성', icon: <Film className="h-4 w-4" /> },
     { id: 'stage8', label: 'Stage 8: 오디오 생성', icon: <Music className="h-4 w-4" /> }
@@ -359,6 +362,29 @@ const StoryboardPage = () => {
         </Card>
       </div>
 
+      {/* Stage 2 전용 이미지 섹션 */}
+      {stageId === 'stage2' && (
+        <div className="mt-8">
+          <Card className="hover:shadow-lg transition-shadow duration-300">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center">
+                <Upload className="h-5 w-5 mr-2" />
+                Stage 2 JSON 업로드 가이드
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="w-full overflow-hidden rounded-lg shadow-md">
+                <img 
+                  src={stage2Image} 
+                  alt="Stage 2 JSON 업로드 가이드" 
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
     </motion.div>
   )
 
@@ -368,7 +394,7 @@ const StoryboardPage = () => {
         {/* Sidebar */}
         <div className="w-80 bg-white shadow-lg border-r border-gray-200 fixed h-full overflow-y-auto">
           <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">스토리보드</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">JSON 출력</h2>
             <p className="text-sm text-gray-600 mb-6">AIFI 프레임워크 가이드</p>
             <nav className="space-y-2">
               {sidebarItems.map((item) => (
@@ -395,8 +421,6 @@ const StoryboardPage = () => {
                 <div className="ml-3">├── Stage 2/</div>
                 <div className="ml-3">├── Stage 4/</div>
                 <div className="ml-3">├── Stage 5/</div>
-                <div className="ml-6">├── scene1.json</div>
-                <div className="ml-6">└── scene2.json</div>
                 <div className="ml-3">├── Stage 6/</div>
                 <div className="ml-3">├── Stage 7/</div>
                 <div className="ml-3">└── Stage 8/</div>
@@ -414,7 +438,7 @@ const StoryboardPage = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">⚠️ 시작하기 전 주의사항</h1>
+                <h1 className="text-4xl font-bold text-gray-900 mb-4">⚠️ JSON 출력하기 전 주의사항</h1>
                 <p className="text-xl text-gray-600">
                   AIFI 프레임워크를 사용하기 전 반드시 확인해야 할 중요한 사항들입니다.
                 </p>
@@ -462,6 +486,38 @@ const StoryboardPage = () => {
                         <img 
                           src={warningImage} 
                           alt="Gemini 2.5 Pro 사용 안내" 
+                          className="w-full rounded-lg shadow-md"
+                        />
+                      </motion.div>
+                    )}
+                    
+                    {/* 세 번째 카드 아래에 폴더 구조 이미지 추가 */}
+                    {index === 2 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="mt-6"
+                      >
+                        <img 
+                          src={stagefolderImage} 
+                          alt="Stage별 폴더 구조" 
+                          className="w-full rounded-lg shadow-md"
+                        />
+                      </motion.div>
+                    )}
+                    
+                    {/* 네 번째 카드 아래에 씬별 JSON 가이드 이미지 추가 */}
+                    {index === 3 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="mt-6"
+                      >
+                        <img 
+                          src={stageguideImage} 
+                          alt="씬별 JSON 파일 가이드" 
                           className="w-full rounded-lg shadow-md"
                         />
                       </motion.div>
