@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check } from 'lucide-react'
 import gemGuideImage from '@/assets/Snipaste_2025-09-02_18-36-17.jpg'
@@ -13,21 +13,12 @@ const GemGuidePage = () => {
   const stages = [
     {
       id: 1,
-      title: "[공통사항] 젬 지침 만들기",
-      shortTitle: "영화&CF 프레임워크",
+      title: "▶ 1단계 : 젬 지침 만들기",
+      shortTitle: "영화 & CF 공통사항",
       icon: <BookOpen className="h-5 w-5" />,
       displayIcon: <BookOpen className="h-8 w-8 text-blue-600" />,
-      content: "위의 스테이지별 젬 제목은 사용하시기 편하게 우측 끝에 복사버튼을 만들어놓았습니다.",
+      content: "👉 위의 스테이지별 젬 제목은 사용하시기 편하게 우측 끝에 복사버튼을 만들어놓았습니다.",
       process: "이제 영화와 CF의 젬지침을 설정하셨으면 젬에서 JSON 파일을 출력하여 멋진 영상 만드세요"
-    },
-    {
-      id: 2,
-      title: "JSON EDITOR 사용방법",
-      shortTitle: "JSON EDITOR 사용법",
-      icon: <Edit className="h-5 w-5" />,
-      displayIcon: <Edit className="h-8 w-8 text-green-600" />,
-      content: "시놉시스를 바탕으로 구체적인 시나리오를 작성하는 단계입니다. 스테이지1에서 창출한 아이디어를 활용하여 장면별 대사, 동작, 감정선을 상세하게 구성합니다. AIFI는 시나리오 작성 템플릿과 포맷팅 도구를 제공하여 전문적인 스크립트를 효율적으로 완성할 수 있도록 지원합니다.",
-      process: "JSON 에디터를 사용하는 방법"
     }
   ];
   
@@ -137,8 +128,6 @@ const GemGuidePage = () => {
                       {currentStage.displayIcon}
                     </div>
                     <div>
-                      <CardTitle className="text-2xl">JSON EDITOR 사용법</CardTitle>
-                      <div className="text-sm text-gray-500 mt-1">아래를 보시고 쉽게 아실 수 있으세요</div>
                     </div>
                   </div>
                 </CardHeader>
@@ -217,7 +206,7 @@ const GemGuidePage = () => {
                   </CardDescription>
                   
                   <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                    <h3 className="font-semibold text-blue-900 mb-2">💡 CF 젬지침도 동일하게 적용</h3>
+                    <h3 className="font-semibold text-blue-900 mb-2">▶︎ CF에 들어가는 젬지침도 동일하게 적용하시면 됩니다.</h3>
                     <p className="text-blue-800">{currentStage.process}</p>
                   </div>
 
