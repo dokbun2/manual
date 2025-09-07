@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -11,8 +12,18 @@ import stagefolderImage from '@/assets/stagefolder.jpg'
 import stageguideImage from '@/assets/stageguide.png'
 
 const GemGuidePage = () => {
-  const [activeStage, setActiveStage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeStage, setActiveStage] = useState(() => {
+    const stageParam = searchParams.get('stage');
+    return stageParam ? parseInt(stageParam, 10) : 1;
+  });
   const [copiedIndex, setCopiedIndex] = useState(null);
+
+  // 단계 변경 함수 - URL도 함께 업데이트
+  const handleStageChange = (newStage) => {
+    setActiveStage(newStage);
+    setSearchParams({ stage: newStage.toString() }, { replace: true });
+  };
 
   const stages = [
     {
@@ -110,7 +121,7 @@ const GemGuidePage = () => {
                   key={stage.id}
                   variant={activeStage === stage.id ? "default" : "ghost"}
                   className="w-full justify-start text-left"
-                  onClick={() => setActiveStage(stage.id)}
+                  onClick={() => handleStageChange(stage.id)}
                 >
                   {stage.icon}
                   <span className="ml-2 text-sm">{stage.shortTitle}</span>
@@ -454,127 +465,127 @@ const GemGuidePage = () => {
                             <FileJson className="h-5 w-5 mr-2" />
                             스테이지 진행방향 가이드
                           </h3>
-                          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4">
-                            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border-2 border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 pt-16">
+                            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-2xl border-2 border-blue-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-200">
                               <div className="font-bold text-blue-900 mb-2 text-lg">[스테이지2]</div>
                               <div className="text-gray-800 text-base font-medium">JSON 1번넣기</div>
                               
                               {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
-                                  <div className="font-semibold mb-1">스테이지2 상세정보</div>
-                                  <div>Stage 1에서 생성된 JSON 파일을</div>
-                                  <div>시나리오 구조화 단계에서 활용</div>
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
+                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
+                                  <div className="font-bold mb-2 text-blue-300">스테이지2 상세정보</div>
+                                  <div className="text-gray-100">Stage 1에서 생성된 JSON 파일을</div>
+                                  <div className="text-gray-100">시나리오 구조화 단계에서 활용</div>
                                   {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
                                 </div>
                               </div>
                             </div>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl border-2 border-green-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                            <div className="bg-gradient-to-br from-green-50 to-green-100 p-5 rounded-2xl border-2 border-green-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-green-400 hover:bg-gradient-to-br hover:from-green-100 hover:to-green-200">
                               <div className="font-bold text-green-900 mb-2 text-lg">[스테이지3]</div>
                               <div className="text-gray-800 text-base font-medium">JSON 2번넣기</div>
                               
                               {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
-                                  <div className="font-semibold mb-1">스테이지3 상세정보</div>
-                                  <div>Stage 2에서 생성된 JSON 파일을</div>
-                                  <div>GEM에 업로드하여 비주얼 컨셉 정의</div>
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
+                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
+                                  <div className="font-bold mb-2 text-green-300">스테이지3 상세정보</div>
+                                  <div className="text-gray-100">Stage 2에서 생성된 JSON 파일을</div>
+                                  <div className="text-gray-100">GEM에 업로드하여 비주얼 컨셉 정의</div>
                                   {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
                                 </div>
                               </div>
                             </div>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-xl border-2 border-orange-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-5 rounded-2xl border-2 border-orange-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-100 hover:to-orange-200">
                               <div className="font-bold text-orange-900 mb-2 text-lg">[스테이지4]</div>
                               <div className="text-gray-800 text-base font-medium">JSON 3번넣기</div>
                               
                               {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
-                                  <div className="font-semibold mb-1">스테이지4 상세정보</div>
-                                  <div>Stage 3에서 생성된 JSON 파일을</div>
-                                  <div>컨셉아트 블록 생성에 활용</div>
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
+                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
+                                  <div className="font-bold mb-2 text-orange-300">스테이지4 상세정보</div>
+                                  <div className="text-gray-100">Stage 3에서 생성된 JSON 파일을</div>
+                                  <div className="text-gray-100">컨셉아트 블록 생성에 활용</div>
                                   {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
                                 </div>
                               </div>
                             </div>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border-2 border-purple-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-5 rounded-2xl border-2 border-purple-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-100 hover:to-purple-200">
                               <div className="font-bold text-purple-900 mb-2 text-lg">[스테이지5]</div>
                               <div className="text-gray-800 text-sm font-medium">JSON 2,4번 넣기</div>
                               
                               {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
-                                  <div className="font-semibold mb-1">스테이지5 상세정보</div>
-                                  <div>Stage 2,4에서 생성된 JSON을</div>
-                                  <div>장면 분할 작업에 활용</div>
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
+                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
+                                  <div className="font-bold mb-2 text-purple-300">스테이지5 상세정보</div>
+                                  <div className="text-gray-100">Stage 2,4에서 생성된 JSON을</div>
+                                  <div className="text-gray-100">장면 분할 작업에 활용</div>
                                   {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
                                 </div>
                               </div>
                             </div>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded-xl border-2 border-pink-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                            <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-5 rounded-2xl border-2 border-pink-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-100 hover:to-pink-200">
                               <div className="font-bold text-pink-900 mb-2 text-lg">[스테이지6]</div>
                               <div className="text-gray-800 text-sm font-medium">JSON 4,5번 넣기</div>
                               
                               {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
-                                  <div className="font-semibold mb-1">스테이지6 상세정보</div>
-                                  <div>Stage 4,5에서 생성된 JSON을</div>
-                                  <div>이미지 프롬프트 생성에 활용</div>
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
+                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
+                                  <div className="font-bold mb-2 text-pink-300">스테이지6 상세정보</div>
+                                  <div className="text-gray-100">Stage 4,5에서 생성된 JSON을</div>
+                                  <div className="text-gray-100">이미지 프롬프트 생성에 활용</div>
                                   {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
                                 </div>
                               </div>
                             </div>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 p-4 rounded-xl border-2 border-cyan-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 p-5 rounded-2xl border-2 border-cyan-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-cyan-400 hover:bg-gradient-to-br hover:from-cyan-100 hover:to-cyan-200">
                               <div className="font-bold text-cyan-900 mb-2 text-lg">[스테이지7]</div>
                               <div className="text-gray-800 text-sm font-medium">JSON 5,6번넣기</div>
                               
                               {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
-                                  <div className="font-semibold mb-1">스테이지7 상세정보</div>
-                                  <div>Stage 5,6에서 생성된 JSON을</div>
-                                  <div>영상 프롬프트 생성에 활용</div>
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
+                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
+                                  <div className="font-bold mb-2 text-cyan-300">스테이지7 상세정보</div>
+                                  <div className="text-gray-100">Stage 5,6에서 생성된 JSON을</div>
+                                  <div className="text-gray-100">영상 프롬프트 생성에 활용</div>
                                   {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
                                 </div>
                               </div>
                             </div>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-xl border-2 border-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-5 rounded-2xl border-2 border-indigo-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-indigo-400 hover:bg-gradient-to-br hover:from-indigo-100 hover:to-indigo-200">
                               <div className="font-bold text-indigo-900 mb-2 text-lg">[스테이지8]</div>
                               <div className="text-gray-800 text-base font-medium">JSON 5번 넣기</div>
                               
                               {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
-                                  <div className="font-semibold mb-1">스테이지8 상세정보</div>
-                                  <div>Stage 5에서 생성된 JSON을</div>
-                                  <div>오디오 스크립트 생성에 활용</div>
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
+                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
+                                  <div className="font-bold mb-2 text-indigo-300">스테이지8 상세정보</div>
+                                  <div className="text-gray-100">Stage 5에서 생성된 JSON을</div>
+                                  <div className="text-gray-100">오디오 스크립트 생성에 활용</div>
                                   {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
                                 </div>
                               </div>
                             </div>
