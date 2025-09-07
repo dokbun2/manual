@@ -62,7 +62,7 @@ const HomePage = () => {
               <h3 className="text-lg font-semibold mb-4">주요 기능</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><Link to="/gem-guide" className="hover:text-white transition-colors">GEM지침만들기</Link></li>
-                <li><Link to="/storyboard" className="hover:text-white transition-colors">JSON출력</Link></li>
+                <li><Link to="/storyboard" className="hover:text-white transition-colors">STAGE</Link></li>
               </ul>
             </div>
             

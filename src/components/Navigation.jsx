@@ -10,8 +10,8 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/gem-guide', label: '사용방법' },
-    { path: '/storyboard', label: 'JSON출력' },
-    { path: '/faq', label: '자주묻는질문' }
+    { path: '/storyboard', label: 'STAGE' },
+    { path: '/faq', label: 'FAQ' }
   ]
 
   return (

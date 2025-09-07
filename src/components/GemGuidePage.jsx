@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check, FileText, CheckCircle } from 'lucide-react'
+import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check, FileText, CheckCircle, FileJson, AlertTriangle } from 'lucide-react'
 import gemGuideImage from '@/assets/Snipaste_2025-09-02_18-36-17.jpg'
 import overlayImage from '@/assets/2.jpg'
 import stage2Image from '@/assets/stage2.jpg'
+import warningImage from '@/assets/1-1.jpg'
+import stagefolderImage from '@/assets/stagefolder.jpg'
+import stageguideImage from '@/assets/stageguide.png'
 
 const GemGuidePage = () => {
   const [activeStage, setActiveStage] = useState(1);
@@ -23,10 +26,18 @@ const GemGuidePage = () => {
     {
       id: 2,
       title: "2단계 : AIFI 프레임워크란?",
-      shortTitle: "2단계 : AIFI 프레임워크란?",
+      shortTitle: "2단계 : 전체흐름 살펴보기",
       icon: <Film className="h-5 w-5" />,
-      content: "AIFI 프레임워크를 활용한 체계적인 영상 제작 프로세스를 단계별로 안내합니다.",
+      content: "Google Gemini Gem을 통해 출력된 JSON파일 중 스테이지 2, 4, 5, 6, 7, 8번 파일로 AIFI 웹페이지를 통해 영상 제작을 합니다.",
       process: "AIFI 프레임워크에 입문하기 전에 간단하게 Workflow를 확인하세요"
+    },
+    {
+      id: 3,
+      title: "3단계: JSON 출력하기",
+      shortTitle: "3단계 : JSON 출력하기",
+      icon: <FileJson className="h-5 w-5" />,
+      content: "AIFI 프레임워크를 사용하기 전 반드시 확인해야 할 중요한 사항들입니다.",
+      process: "JSON 파일 생성 시 주의사항을 숙지하고 안전하게 출력하세요"
     }
   ];
   
@@ -212,6 +223,15 @@ const GemGuidePage = () => {
                         {currentStage.content}
                       </CardDescription>
 
+                      {/* Stage 2 이미지 추가 */}
+                      <div className="mb-8">
+                        <img 
+                          src={stage2Image} 
+                          alt="Stage 2 JSON 업로드 가이드" 
+                          className="w-full rounded-lg shadow-md"
+                        />
+                      </div>
+
                       {/* 1단계: JSON 파일 생성 및 정리 */}
                       <div className="mb-8">
                         <div className="bg-white p-6 rounded-lg border-2 border-blue-200 mb-4">
@@ -242,15 +262,6 @@ const GemGuidePage = () => {
                             <div className="flex items-start">
                               <div className="bg-purple-100 text-purple-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</div>
                               <p><strong>Stage 5 JSON 업로드:</strong> 각 씬별 Stage 5 JSON 파일을 모두 업로드하여 샷을 분할합니다.</p>
-                            </div>
-                            
-                            {/* Stage 2 이미지 추가 */}
-                            <div className="mt-4">
-                              <img 
-                                src={stage2Image} 
-                                alt="Stage 2 JSON 업로드 가이드" 
-                                className="w-full rounded-lg shadow-md"
-                              />
                             </div>
                           </div>
                         </div>
@@ -366,6 +377,272 @@ const GemGuidePage = () => {
 
                       <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                         <h3 className="font-semibold text-blue-900 mb-2">▶︎ 체계적인 워크플로우로 전문적인 영상을 제작하세요</h3>
+                        <p className="text-blue-800">{currentStage.process}</p>
+                      </div>
+                    </>
+                  )}
+
+                  {activeStage === 3 && (
+                    <>
+                      <CardDescription className="text-lg leading-relaxed text-gray-700 mb-6">
+                        {currentStage.content}
+                      </CardDescription>
+
+                      {/* JSON 출력 전 주의사항 */}
+                      <div className="space-y-6">
+                        <div className="bg-white p-6 rounded-lg border-2 border-red-200">
+                          <div className="flex items-center space-x-4 mb-4">
+                            <div className="p-3 bg-white rounded-lg">
+                              <AlertTriangle className="h-6 w-6 text-red-600" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold">Gemini 2.5 Pro 사용 필수</h3>
+                              <span className="text-xs text-red-600 font-semibold">필수 확인</span>
+                            </div>
+                          </div>
+                          <p className="text-base text-gray-700">
+                            JSON 파일 생성 시 반드시 <strong>Gemini 2.5 Pro</strong>를 사용하세요. Flash 버전은 사용하지 마세요.
+                          </p>
+                        </div>
+                        
+                        {/* Gemini 2.5 Pro 사용 안내 이미지 */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          className="mt-6"
+                        >
+                          <img 
+                            src={warningImage} 
+                            alt="Gemini 2.5 Pro 사용 안내" 
+                            className="w-full rounded-lg shadow-md"
+                          />
+                        </motion.div>
+
+
+                        <div className="bg-white p-6 rounded-lg border-2 border-blue-200">
+                          <div className="flex items-center space-x-4 mb-4">
+                            <div className="p-3 bg-white rounded-lg">
+                              <FileJson className="h-6 w-6 text-blue-600" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold">Stage별 폴더 관리</h3>
+                            </div>
+                          </div>
+                          <p className="text-base text-gray-700">
+                            생성된 JSON 파일은 Stage별로 폴더를 생성하여 저장하세요.
+                          </p>
+                        </div>
+                        
+                        {/* Stage별 폴더 구조 이미지 */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          className="mt-6"
+                        >
+                          <img 
+                            src={stagefolderImage} 
+                            alt="Stage별 폴더 구조" 
+                            className="w-full rounded-lg shadow-md"
+                          />
+                        </motion.div>
+
+                        {/* 스테이지 진행방향 가이드 */}
+                        <div className="bg-white p-6 rounded-lg border-2 border-purple-200">
+                          <h3 className="text-xl font-bold text-purple-900 mb-4 flex items-center">
+                            <FileJson className="h-5 w-5 mr-2" />
+                            스테이지 진행방향 가이드
+                          </h3>
+                          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4">
+                            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border-2 border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                              <div className="font-bold text-blue-900 mb-2 text-lg">[스테이지2]</div>
+                              <div className="text-gray-800 text-base font-medium">JSON 1번넣기</div>
+                              
+                              {/* 호버 시 표시되는 상세 정보 */}
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
+                                  <div className="font-semibold mb-1">스테이지2 상세정보</div>
+                                  <div>Stage 1에서 생성된 JSON 파일을</div>
+                                  <div>시나리오 구조화 단계에서 활용</div>
+                                  {/* 말풍선 화살표 */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
+                            
+                            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl border-2 border-green-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                              <div className="font-bold text-green-900 mb-2 text-lg">[스테이지3]</div>
+                              <div className="text-gray-800 text-base font-medium">JSON 2번넣기</div>
+                              
+                              {/* 호버 시 표시되는 상세 정보 */}
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
+                                  <div className="font-semibold mb-1">스테이지3 상세정보</div>
+                                  <div>Stage 2에서 생성된 JSON 파일을</div>
+                                  <div>GEM에 업로드하여 비주얼 컨셉 정의</div>
+                                  {/* 말풍선 화살표 */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
+                            
+                            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-xl border-2 border-orange-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                              <div className="font-bold text-orange-900 mb-2 text-lg">[스테이지4]</div>
+                              <div className="text-gray-800 text-base font-medium">JSON 3번넣기</div>
+                              
+                              {/* 호버 시 표시되는 상세 정보 */}
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
+                                  <div className="font-semibold mb-1">스테이지4 상세정보</div>
+                                  <div>Stage 3에서 생성된 JSON 파일을</div>
+                                  <div>컨셉아트 블록 생성에 활용</div>
+                                  {/* 말풍선 화살표 */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
+                            
+                            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border-2 border-purple-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                              <div className="font-bold text-purple-900 mb-2 text-lg">[스테이지5]</div>
+                              <div className="text-gray-800 text-sm font-medium">JSON 2,4번 넣기</div>
+                              
+                              {/* 호버 시 표시되는 상세 정보 */}
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
+                                  <div className="font-semibold mb-1">스테이지5 상세정보</div>
+                                  <div>Stage 2,4에서 생성된 JSON을</div>
+                                  <div>장면 분할 작업에 활용</div>
+                                  {/* 말풍선 화살표 */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
+                            
+                            <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded-xl border-2 border-pink-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                              <div className="font-bold text-pink-900 mb-2 text-lg">[스테이지6]</div>
+                              <div className="text-gray-800 text-sm font-medium">JSON 4,5번 넣기</div>
+                              
+                              {/* 호버 시 표시되는 상세 정보 */}
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
+                                  <div className="font-semibold mb-1">스테이지6 상세정보</div>
+                                  <div>Stage 4,5에서 생성된 JSON을</div>
+                                  <div>이미지 프롬프트 생성에 활용</div>
+                                  {/* 말풍선 화살표 */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
+                            
+                            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 p-4 rounded-xl border-2 border-cyan-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                              <div className="font-bold text-cyan-900 mb-2 text-lg">[스테이지7]</div>
+                              <div className="text-gray-800 text-sm font-medium">JSON 5,6번넣기</div>
+                              
+                              {/* 호버 시 표시되는 상세 정보 */}
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
+                                  <div className="font-semibold mb-1">스테이지7 상세정보</div>
+                                  <div>Stage 5,6에서 생성된 JSON을</div>
+                                  <div>영상 프롬프트 생성에 활용</div>
+                                  {/* 말풍선 화살표 */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
+                            
+                            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-xl border-2 border-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center min-w-[120px] flex-shrink-0 relative group">
+                              <div className="font-bold text-indigo-900 mb-2 text-lg">[스테이지8]</div>
+                              <div className="text-gray-800 text-base font-medium">JSON 5번 넣기</div>
+                              
+                              {/* 호버 시 표시되는 상세 정보 */}
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="bg-gray-900 text-white text-sm rounded-lg p-3 whitespace-nowrap shadow-lg">
+                                  <div className="font-semibold mb-1">스테이지8 상세정보</div>
+                                  <div>Stage 5에서 생성된 JSON을</div>
+                                  <div>오디오 스크립트 생성에 활용</div>
+                                  {/* 말풍선 화살표 */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                            <p className="text-gray-700 text-base font-medium">
+                              <strong>💡 진행방향:</strong> 각 스테이지에서 생성된 JSON 파일을 다음 스테이지의 입력으로 사용하여 단계별로 영상제작을 완성해갑니다.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="bg-white p-6 rounded-lg border-2 border-indigo-200">
+                          <div className="flex items-center space-x-4 mb-4">
+                            <div className="p-3 bg-white rounded-lg">
+                              <FileJson className="h-6 w-6 text-indigo-600" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold">씬별 JSON 파일</h3>
+                            </div>
+                          </div>
+                          <p className="text-base text-gray-700">
+                            Stage 5부터는 씬 개수만큼 JSON 파일이 생성됩니다. 예: 6개 씬 = 6개 JSON 파일
+                          </p>
+                        </div>
+                        
+                        {/* 씬별 JSON 파일 가이드 이미지 */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          className="mt-6"
+                        >
+                          <img 
+                            src={stageguideImage} 
+                            alt="씬별 JSON 파일 가이드" 
+                            className="w-full rounded-lg shadow-md"
+                          />
+                        </motion.div>
+                      </div>
+
+
+                      <div className="mt-8 bg-white p-6 rounded-lg border-2 border-yellow-200">
+                        <h3 className="text-xl font-bold text-yellow-900 mb-4 flex items-center">
+                          <FileJson className="h-5 w-5 mr-2" />
+                          JSON 파일 생성 프로세스
+                        </h3>
+                        <div className="space-y-3">
+                          <div className="flex items-center space-x-3">
+                            <CheckCircle className="h-5 w-5 text-green-600" />
+                            <span>Gemini 2.5 Pro 선택</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <CheckCircle className="h-5 w-5 text-green-600" />
+                            <span>프롬프트 입력 후 생성 시작</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <CheckCircle className="h-5 w-5 text-green-600" />
+                            <span>완료 화살표 확인 후 복사</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <CheckCircle className="h-5 w-5 text-green-600" />
+                            <span>Stage별 폴더에 저장</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h3 className="font-semibold text-blue-900 mb-2">▶︎ 안전한 JSON 파일 생성</h3>
                         <p className="text-blue-800">{currentStage.process}</p>
                       </div>
                     </>
