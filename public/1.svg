@@ -1,0 +1,98 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 그라데이션 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 카드 배경 그라데이션 -->
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- 그림자 필터 -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- 배경 -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- 배경 패턴 (원형 패턴들) -->
+  <circle cx="100" cy="100" r="50" fill="#ffffff" opacity="0.1"/>
+  <circle cx="1100" cy="100" r="80" fill="#ffffff" opacity="0.08"/>
+  <circle cx="200" cy="500" r="60" fill="#ffffff" opacity="0.06"/>
+  <circle cx="1000" cy="530" r="70" fill="#ffffff" opacity="0.1"/>
+  
+  <!-- 메인 카드 -->
+  <rect x="80" y="80" width="1040" height="470" rx="24" fill="url(#cardGradient)" filter="url(#shadow)"/>
+  
+  <!-- AI 로고/아이콘 (상단 좌측) -->
+  <g transform="translate(120, 120)">
+    <rect width="80" height="80" rx="16" fill="#3b82f6"/>
+    <text x="40" y="55" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">AI</text>
+  </g>
+  
+  <!-- 메인 제목 -->
+  <text x="230" y="170" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#1f2937">
+    AIFI 영상프레임워크
+  </text>
+  
+  <!-- 부제목 -->
+  <text x="230" y="220" font-family="Arial, sans-serif" font-size="32" font-weight="400" fill="#6b7280">
+    AI 영상제작의 새로운 표준
+  </text>
+  
+  <!-- 기능 아이콘들 -->
+  <g transform="translate(120, 280)">
+    <!-- GEM 8단계 -->
+    <g>
+      <rect x="0" y="0" width="60" height="60" rx="12" fill="#10b981"/>
+      <text x="30" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">8</text>
+      <text x="30" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">GEM</text>
+      <text x="30" y="105" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">8단계</text>
+    </g>
+    
+    <!-- 스토리보드 -->
+    <g transform="translate(200, 0)">
+      <rect x="0" y="0" width="60" height="60" rx="12" fill="#8b5cf6"/>
+      <rect x="15" y="15" width="30" height="18" rx="2" fill="white"/>
+      <rect x="15" y="37" width="30" height="8" rx="1" fill="white"/>
+      <text x="30" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">스토리</text>
+      <text x="30" y="105" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">보드</text>
+    </g>
+    
+    <!-- 컨셉아트 -->
+    <g transform="translate(400, 0)">
+      <rect x="0" y="0" width="60" height="60" rx="12" fill="#f59e0b"/>
+      <rect x="12" y="12" width="36" height="24" rx="3" fill="white"/>
+      <circle cx="22" cy="22" r="3" fill="#f59e0b"/>
+      <rect x="12" y="40" width="20" height="8" rx="1" fill="white"/>
+      <text x="30" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">컨셉</text>
+      <text x="30" y="105" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">아트</text>
+    </g>
+    
+    <!-- JSON 에디터 -->
+    <g transform="translate(600, 0)">
+      <rect x="0" y="0" width="60" height="60" rx="12" fill="#ef4444"/>
+      <text x="30" y="25" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">{}</text>
+      <text x="30" y="45" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white" text-anchor="middle">JSON</text>
+      <text x="30" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">JSON</text>
+      <text x="30" y="105" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#374151" text-anchor="middle">에디터</text>
+    </g>
+  </g>
+  
+  <!-- 하단 설명 텍스트 -->
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="28" font-weight="400" fill="#4b5563" text-anchor="middle">
+    체계적인 영상 제작 가이드와 도구를 제공합니다
+  </text>
+  
+  <!-- URL -->
+  <text x="600" y="490" font-family="Arial, sans-serif" font-size="24" font-weight="500" fill="#3b82f6" text-anchor="middle">
+    guide.aifi.ai.kr
+  </text>
+</svg>
