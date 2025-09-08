@@ -27,9 +27,9 @@ const StoryboardPage = () => {
     { id: 'stage3', label: 'Stage 3: 비주얼 컨셉 정의', icon: <Palette className="h-4 w-4" /> },
     { id: 'stage4', label: 'Stage 4: 컨셉아트', icon: <Users className="h-4 w-4" /> },
     { id: 'stage5', label: 'Stage 5: 장면 분할', icon: <Layers className="h-4 w-4" /> },
-    { id: 'stage6', label: 'Stage 6: 이미지 생성', icon: <Image className="h-4 w-4" /> },
-    { id: 'stage7', label: 'Stage 7: 영상 생성', icon: <Film className="h-4 w-4" /> },
-    { id: 'stage8', label: 'Stage 8: 오디오 생성', icon: <Music className="h-4 w-4" /> }
+    { id: 'stage6', label: 'Stage 6: 이미지 프롬프트 생성', icon: <Image className="h-4 w-4" /> },
+    { id: 'stage7', label: 'Stage 7: 영상 프롬프트 생성', icon: <Film className="h-4 w-4" /> },
+    { id: 'stage8', label: 'Stage 8: 오디오 프롬프트 생성', icon: <Music className="h-4 w-4" /> }
   ]
 
   const stage1Content = {
