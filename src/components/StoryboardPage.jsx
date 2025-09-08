@@ -23,7 +23,7 @@ const StoryboardPage = () => {
 
   const sidebarItems = [
     { id: 'stage1', label: 'Stage 1: 아이디어 창작', icon: <Sparkles className="h-4 w-4" /> },
-    { id: 'stage2', label: 'Stage 2: 아이디어 창출', icon: <Edit className="h-4 w-4" /> },
+    { id: 'stage2', label: 'Stage 2: 시나리오 작성', icon: <Edit className="h-4 w-4" /> },
     { id: 'stage3', label: 'Stage 3: 비주얼 컨셉 정의', icon: <Palette className="h-4 w-4" /> },
     { id: 'stage4', label: 'Stage 4: 컨셉아트', icon: <Users className="h-4 w-4" /> },
     { id: 'stage5', label: 'Stage 5: 장면 분할', icon: <Layers className="h-4 w-4" /> },
