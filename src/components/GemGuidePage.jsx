@@ -22,7 +22,7 @@ const GemGuidePage = () => {
       title: "▶ 1단계 : 젬 지침 만들기 - 영화 & CF 공통사항",
       shortTitle: "1단계 : 젬지침 만들기",
       icon: <BookOpen className="h-5 w-5" />,
-      content: "👉 위의 스테이지별 젬 제목은 복사해서 사용하시고 스테이지 1,2,5는 영화와 CF를 구분하세요",
+      content: "👉 위의 스테이지별 젬 제목은 복사해서 사용하시고 <span class='text-red-600 font-bold'>스테이지 1,2,5</span>는 <span class='text-blue-600 font-bold'>영화</span>와 <span class='text-violet-600 font-bold'>CF</span>를 구분하세요",
       process: "이제 영화와 CF의 젬지침을 설정하셨으면 젬에서 JSON 파일을 출력하여 멋진 영상 만드세요"
     },
     {
@@ -258,9 +258,10 @@ const GemGuidePage = () => {
                 <CardContent>
                   {activeStage === 1 && (
                     <>
-                      <CardDescription className="text-lg leading-relaxed text-gray-700">
-                        {currentStage.content}
-                      </CardDescription>
+                      <CardDescription 
+                        className="text-lg leading-relaxed text-gray-700"
+                        dangerouslySetInnerHTML={{ __html: currentStage.content }}
+                      />
                       
                       <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                         <h3 className="font-semibold text-blue-900 mb-2">▶︎ CF에 들어가는 젬지침도 동일하게 적용하시면 됩니다.</h3>

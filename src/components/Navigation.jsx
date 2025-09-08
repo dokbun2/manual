@@ -25,7 +25,7 @@ const Navigation = () => {
               alt="AIFI Logo" 
               className="w-8 h-8"
             />
-            <span className="text-xl font-bold text-gray-900">AIFI</span>
+            <span className="text-xl font-bold text-gray-900">AIFI 사용자매뉴얼</span>
           </Link>
 
           {/* Desktop Navigation */}
