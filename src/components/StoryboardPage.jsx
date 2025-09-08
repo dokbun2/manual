@@ -76,7 +76,7 @@ const StoryboardPage = () => {
       {
         number: "2",
         title: "블록화 시스템 구조화",
-        description: "각 컨셉아트 대상의 20개 블록을 체계적으로 정의",
+        description: "각 컨셉아트 대상의 20개 또는 29개의 블록을 체계적으로 정의",
         detail: "표준화된 블록 구조를 활용하여 캐릭터, 장소, 소품의 세부 설정을 일관성 있게 구성합니다."
       },
       {
@@ -201,7 +201,7 @@ const StoryboardPage = () => {
       {
         number: "2",
         title: "영상 클립 생성",
-        description: "Kling AI, Runway 등에서 영상 생성",
+        description: "VEO, Kling AI, Runway 등에서 영상 생성",
         detail: "프롬프트를 사용하여 각 샷별 영상 클립을 생성합니다."
       },
       {

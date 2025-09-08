@@ -43,7 +43,7 @@ const FAQPage = () => {
     1: [
       {
         question: "AIFI는 무엇인가요?",
-        answer: "AIFI는 AI Film Intelligence의 약자로, AI를 활용하여 영상 제작의 전 과정을 지원하는 통합 플랫폼입니다. 시나리오 작성부터 영상 프롬프트 생성까지 모든 단계를 체계적으로 관리할 수 있습니다."
+        answer: "AIFI는 AI Film Interface의 약자로, AI를 활용하여 영상 제작의 전 과정을 지원하는 통합 플랫폼입니다. 시나리오 작성부터 영상 프롬프트 생성까지 모든 단계를 체계적으로 관리할 수 있습니다."
       },
       {
         question: "제미나이 계정이 꼭 필요한가요?",

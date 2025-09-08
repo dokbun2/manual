@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check, FileText, CheckCircle, FileJson, AlertTriangle, Play, Clock, ExternalLink } from 'lucide-react'
+import { Edit, Wand2, Palette, BookOpen, Film, Image, Layers, Music, Copy, Check, FileText, CheckCircle, FileJson, AlertTriangle } from 'lucide-react'
 import gemGuideImage from '@/assets/Snipaste_2025-09-02_18-36-17.jpg'
 import overlayImage from '@/assets/2.jpg'
 import stage2Image from '@/assets/stage2.jpg'
@@ -13,17 +13,8 @@ import stageguideImage from '@/assets/stageguide.png'
 
 const GemGuidePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [activeStage, setActiveStage] = useState(() => {
-    const stageParam = searchParams.get('stage');
-    return stageParam ? parseInt(stageParam, 10) : 1;
-  });
   const [copiedIndex, setCopiedIndex] = useState(null);
-
-  // 단계 변경 함수 - URL도 함께 업데이트
-  const handleStageChange = (newStage) => {
-    setActiveStage(newStage);
-    setSearchParams({ stage: newStage.toString() }, { replace: true });
-  };
+  const [selectedStage, setSelectedStage] = useState(null);
 
   const stages = [
     {
@@ -31,7 +22,7 @@ const GemGuidePage = () => {
       title: "▶ 1단계 : 젬 지침 만들기 - 영화 & CF 공통사항",
       shortTitle: "1단계 : 젬지침 만들기",
       icon: <BookOpen className="h-5 w-5" />,
-      content: "👉 위의 스테이지별 젬 제목은 사용하시기 편하게 우측 끝에 복사버튼을 만들어놓았습니다.",
+      content: "👉 위의 스테이지별 젬 제목은 복사해서 사용하시고 스테이지 1,2,5는 영화와 CF를 구분하세요",
       process: "이제 영화와 CF의 젬지침을 설정하셨으면 젬에서 JSON 파일을 출력하여 멋진 영상 만드세요"
     },
     {
@@ -51,12 +42,62 @@ const GemGuidePage = () => {
       process: "JSON 파일 생성 시 주의사항을 숙지하고 안전하게 출력하세요"
     }
   ];
+
+  const [activeStage, setActiveStage] = useState(() => {
+    const stageParam = searchParams.get('stage');
+    return stageParam ? parseInt(stageParam, 10) : 1;
+  });
+
+  // 단계 변경 함수 - URL도 함께 업데이트
+  const handleStageChange = (newStage) => {
+    setActiveStage(newStage);
+    setSearchParams({ stage: newStage.toString() }, { replace: true });
+  };
+
+  // 스테이지별 상세 정보
+  const stageDetails = {
+    2: {
+      title: "스테이지2 상세정보",
+      description: "Stage 1에서 생성된 JSON 파일을 시나리오 구조화 단계에서 활용합니다.",
+      color: "text-blue-300"
+    },
+    3: {
+      title: "스테이지3 상세정보", 
+      description: "Stage 2에서 생성된 JSON 파일을 GEM에 업로드하여 비주얼 컨셉을 정의합니다.",
+      color: "text-green-300"
+    },
+    4: {
+      title: "스테이지4 상세정보",
+      description: "Stage 3에서 생성된 JSON 파일을 컨셉아트 블록 생성에 활용합니다.",
+      color: "text-orange-300"
+    },
+    5: {
+      title: "스테이지5 상세정보",
+      description: "Stage 2,4에서 생성된 JSON을 장면 분할 작업에 활용합니다.",
+      color: "text-purple-300"
+    },
+    6: {
+      title: "스테이지6 상세정보",
+      description: "Stage 4,5에서 생성된 JSON을 이미지 프롬프트 생성에 활용합니다.",
+      color: "text-pink-300"
+    },
+    7: {
+      title: "스테이지7 상세정보",
+      description: "Stage 5,6에서 생성된 JSON을 영상 프롬프트 생성에 활용합니다.",
+      color: "text-cyan-300"
+    },
+    8: {
+      title: "스테이지8 상세정보",
+      description: "Stage 5에서 생성된 JSON을 오디오 스크립트 생성에 활용합니다.",
+      color: "text-indigo-300"
+    }
+  };
   
   // 스테이지 3~8의 데이터는 유지하되 사이드바에서만 제외
   const allStages = [
     ...stages,
     {
-      id: 3,
+      id: 4,
       title: "[스테이지3] 컨셉아트 단계",
       shortTitle: "컨셉아트",
       icon: <Palette className="h-5 w-5" />,
@@ -64,7 +105,7 @@ const GemGuidePage = () => {
       process: "2번 넣기 - 시나리오 기반 비주얼 설정"
     },
     {
-      id: 4,
+      id: 5,
       title: "[스테이지4] 컨셉아트 프롬프트 생성단계",
       shortTitle: "아트 프롬프트",
       icon: <Wand2 className="h-5 w-5" />,
@@ -72,7 +113,7 @@ const GemGuidePage = () => {
       process: "3번 넣기 - 컨셉아트를 프롬프트로 변환"
     },
     {
-      id: 5,
+      id: 6,
       title: "[스테이지5] 장면분할 단계",
       shortTitle: "장면분할",
       icon: <Layers className="h-5 w-5" />,
@@ -80,7 +121,7 @@ const GemGuidePage = () => {
       process: "2,4번 넣기 - 시나리오와 프롬프트 통합"
     },
     {
-      id: 6,
+      id: 7,
       title: "[스테이지6] 이미지프롬프트 생성단계",
       shortTitle: "이미지 프롬프트",
       icon: <Image className="h-5 w-5" />,
@@ -88,7 +129,7 @@ const GemGuidePage = () => {
       process: "4,5번 넣기 - 장면별 이미지 프롬프트 생성"
     },
     {
-      id: 7,
+      id: 8,
       title: "[스테이지7] 영상 프롬프트 생성단계",
       shortTitle: "영상 프롬프트",
       icon: <Film className="h-5 w-5" />,
@@ -96,7 +137,7 @@ const GemGuidePage = () => {
       process: "5,6번 넣기 - 동적 영상 프롬프트 생성"
     },
     {
-      id: 8,
+      id: 9,
       title: "[스테이지8] 오디오 프롬프트 생성단계",
       shortTitle: "오디오 프롬프트",
       icon: <Music className="h-5 w-5" />,
@@ -465,130 +506,137 @@ const GemGuidePage = () => {
                             <FileJson className="h-5 w-5 mr-2" />
                             스테이지 진행방향 가이드
                           </h3>
-                          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 pt-16">
-                            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-2xl border-2 border-blue-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-200">
-                              <div className="font-bold text-blue-900 mb-2 text-lg">[스테이지2]</div>
-                              <div className="text-gray-800 text-base font-medium">JSON 1번넣기</div>
-                              
-                              {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
-                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
-                                  <div className="font-bold mb-2 text-blue-300">스테이지2 상세정보</div>
-                                  <div className="text-gray-100">Stage 1에서 생성된 JSON 파일을</div>
-                                  <div className="text-gray-100">시나리오 구조화 단계에서 활용</div>
-                                  {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 pt-4">
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-2xl border-2 border-blue-300 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center min-w-[140px] flex-shrink-0 cursor-pointer">
+                                  <div className="font-bold text-blue-900 mb-2 text-lg">[스테이지2]</div>
+                                  <div className="text-gray-800 text-base font-medium">JSON 1번넣기</div>
                                 </div>
-                              </div>
-                            </div>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle className="text-blue-600">스테이지2 상세정보</DialogTitle>
+                                </DialogHeader>
+                                <DialogDescription className="text-gray-700">
+                                  Stage 1에서 생성된 JSON 파일을 시나리오 구조화 단계에서 활용합니다.
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-green-50 to-green-100 p-5 rounded-2xl border-2 border-green-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-green-400 hover:bg-gradient-to-br hover:from-green-100 hover:to-green-200">
-                              <div className="font-bold text-green-900 mb-2 text-lg">[스테이지3]</div>
-                              <div className="text-gray-800 text-base font-medium">JSON 2번넣기</div>
-                              
-                              {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
-                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
-                                  <div className="font-bold mb-2 text-green-300">스테이지3 상세정보</div>
-                                  <div className="text-gray-100">Stage 2에서 생성된 JSON 파일을</div>
-                                  <div className="text-gray-100">GEM에 업로드하여 비주얼 컨셉 정의</div>
-                                  {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <div className="bg-gradient-to-br from-green-50 to-green-100 p-5 rounded-2xl border-2 border-green-300 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center min-w-[140px] flex-shrink-0 cursor-pointer">
+                                  <div className="font-bold text-green-900 mb-2 text-lg">[스테이지3]</div>
+                                  <div className="text-gray-800 text-base font-medium">JSON 2번넣기</div>
                                 </div>
-                              </div>
-                            </div>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle className="text-green-600">스테이지3 상세정보</DialogTitle>
+                                </DialogHeader>
+                                <DialogDescription className="text-gray-700">
+                                  Stage 2에서 생성된 JSON 파일을 GEM에 업로드하여 비주얼 컨셉을 정의합니다.
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-5 rounded-2xl border-2 border-orange-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-100 hover:to-orange-200">
-                              <div className="font-bold text-orange-900 mb-2 text-lg">[스테이지4]</div>
-                              <div className="text-gray-800 text-base font-medium">JSON 3번넣기</div>
-                              
-                              {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
-                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
-                                  <div className="font-bold mb-2 text-orange-300">스테이지4 상세정보</div>
-                                  <div className="text-gray-100">Stage 3에서 생성된 JSON 파일을</div>
-                                  <div className="text-gray-100">컨셉아트 블록 생성에 활용</div>
-                                  {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-5 rounded-2xl border-2 border-orange-300 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center min-w-[140px] flex-shrink-0 cursor-pointer">
+                                  <div className="font-bold text-orange-900 mb-2 text-lg">[스테이지4]</div>
+                                  <div className="text-gray-800 text-base font-medium">JSON 3번넣기</div>
                                 </div>
-                              </div>
-                            </div>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle className="text-orange-600">스테이지4 상세정보</DialogTitle>
+                                </DialogHeader>
+                                <DialogDescription className="text-gray-700">
+                                  Stage 3에서 생성된 JSON 파일을 컨셉아트 블록 생성에 활용합니다.
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-5 rounded-2xl border-2 border-purple-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-100 hover:to-purple-200">
-                              <div className="font-bold text-purple-900 mb-2 text-lg">[스테이지5]</div>
-                              <div className="text-gray-800 text-sm font-medium">JSON 2,4번 넣기</div>
-                              
-                              {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
-                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
-                                  <div className="font-bold mb-2 text-purple-300">스테이지5 상세정보</div>
-                                  <div className="text-gray-100">Stage 2,4에서 생성된 JSON을</div>
-                                  <div className="text-gray-100">장면 분할 작업에 활용</div>
-                                  {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-5 rounded-2xl border-2 border-purple-300 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center min-w-[140px] flex-shrink-0 cursor-pointer">
+                                  <div className="font-bold text-purple-900 mb-2 text-lg">[스테이지5]</div>
+                                  <div className="text-gray-800 text-sm font-medium">JSON 2,4번 넣기</div>
                                 </div>
-                              </div>
-                            </div>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle className="text-purple-600">스테이지5 상세정보</DialogTitle>
+                                </DialogHeader>
+                                <DialogDescription className="text-gray-700">
+                                  Stage 2,4에서 생성된 JSON을 장면 분할 작업에 활용합니다.
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-5 rounded-2xl border-2 border-pink-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-100 hover:to-pink-200">
-                              <div className="font-bold text-pink-900 mb-2 text-lg">[스테이지6]</div>
-                              <div className="text-gray-800 text-sm font-medium">JSON 4,5번 넣기</div>
-                              
-                              {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
-                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
-                                  <div className="font-bold mb-2 text-pink-300">스테이지6 상세정보</div>
-                                  <div className="text-gray-100">Stage 4,5에서 생성된 JSON을</div>
-                                  <div className="text-gray-100">이미지 프롬프트 생성에 활용</div>
-                                  {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-5 rounded-2xl border-2 border-pink-300 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center min-w-[140px] flex-shrink-0 cursor-pointer">
+                                  <div className="font-bold text-pink-900 mb-2 text-lg">[스테이지6]</div>
+                                  <div className="text-gray-800 text-sm font-medium">JSON 4,5번 넣기</div>
                                 </div>
-                              </div>
-                            </div>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle className="text-pink-600">스테이지6 상세정보</DialogTitle>
+                                </DialogHeader>
+                                <DialogDescription className="text-gray-700">
+                                  Stage 4,5에서 생성된 JSON을 이미지 프롬프트 생성에 활용합니다.
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 p-5 rounded-2xl border-2 border-cyan-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-cyan-400 hover:bg-gradient-to-br hover:from-cyan-100 hover:to-cyan-200">
-                              <div className="font-bold text-cyan-900 mb-2 text-lg">[스테이지7]</div>
-                              <div className="text-gray-800 text-sm font-medium">JSON 5,6번넣기</div>
-                              
-                              {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
-                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
-                                  <div className="font-bold mb-2 text-cyan-300">스테이지7 상세정보</div>
-                                  <div className="text-gray-100">Stage 5,6에서 생성된 JSON을</div>
-                                  <div className="text-gray-100">영상 프롬프트 생성에 활용</div>
-                                  {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 p-5 rounded-2xl border-2 border-cyan-300 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center min-w-[140px] flex-shrink-0 cursor-pointer">
+                                  <div className="font-bold text-cyan-900 mb-2 text-lg">[스테이지7]</div>
+                                  <div className="text-gray-800 text-sm font-medium">JSON 5,6번넣기</div>
                                 </div>
-                              </div>
-                            </div>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle className="text-cyan-600">스테이지7 상세정보</DialogTitle>
+                                </DialogHeader>
+                                <DialogDescription className="text-gray-700">
+                                  Stage 5,6에서 생성된 JSON을 영상 프롬프트 생성에 활용합니다.
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
                             
                             <div className="text-gray-400 text-xl font-bold mx-1 flex-shrink-0">→</div>
                             
-                            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-5 rounded-2xl border-2 border-indigo-300 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-1 text-center min-w-[140px] flex-shrink-0 relative group cursor-pointer hover:border-indigo-400 hover:bg-gradient-to-br hover:from-indigo-100 hover:to-indigo-200">
-                              <div className="font-bold text-indigo-900 mb-2 text-lg">[스테이지8]</div>
-                              <div className="text-gray-800 text-base font-medium">JSON 5번 넣기</div>
-                              
-                              {/* 호버 시 표시되는 상세 정보 */}
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:scale-105">
-                                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm rounded-xl p-4 whitespace-nowrap shadow-2xl border border-gray-600">
-                                  <div className="font-bold mb-2 text-indigo-300">스테이지8 상세정보</div>
-                                  <div className="text-gray-100">Stage 5에서 생성된 JSON을</div>
-                                  <div className="text-gray-100">오디오 스크립트 생성에 활용</div>
-                                  {/* 말풍선 화살표 */}
-                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-5 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-5 rounded-2xl border-2 border-indigo-300 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center min-w-[140px] flex-shrink-0 cursor-pointer">
+                                  <div className="font-bold text-indigo-900 mb-2 text-lg">[스테이지8]</div>
+                                  <div className="text-gray-800 text-base font-medium">JSON 5번 넣기</div>
                                 </div>
-                              </div>
-                            </div>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle className="text-indigo-600">스테이지8 상세정보</DialogTitle>
+                                </DialogHeader>
+                                <DialogDescription className="text-gray-700">
+                                  Stage 5에서 생성된 JSON을 오디오 스크립트 생성에 활용합니다.
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
                           </div>
                           <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
                             <p className="text-gray-700 text-base font-medium">
