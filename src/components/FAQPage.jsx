@@ -17,13 +17,6 @@ const FAQPage = () => {
       displayIcon: <BookOpen className="h-8 w-8 text-blue-600" />
     },
     {
-      id: 2,
-      title: "젬 지침 관련",
-      shortTitle: "젬 지침",
-      icon: <Settings className="h-5 w-5" />,
-      displayIcon: <Settings className="h-8 w-8 text-green-600" />
-    },
-    {
       id: 3,
       title: "JSON 에디터 사용법",
       shortTitle: "JSON 에디터",
@@ -31,11 +24,20 @@ const FAQPage = () => {
       displayIcon: <FileJson className="h-8 w-8 text-indigo-600" />
     },
     {
+      id: 2,
+      title: "젬 지침 관련",
+      shortTitle: "젬 지침 (준비중)",
+      icon: <Settings className="h-5 w-5" />,
+      displayIcon: <Settings className="h-8 w-8 text-green-600" />,
+      disabled: true
+    },
+    {
       id: 4,
       title: "문제 해결",
-      shortTitle: "문제 해결",
+      shortTitle: "문제 해결 (준비중)",
       icon: <AlertCircle className="h-5 w-5" />,
-      displayIcon: <AlertCircle className="h-8 w-8 text-orange-600" />
+      displayIcon: <AlertCircle className="h-8 w-8 text-orange-600" />,
+      disabled: true
     }
   ];
 
@@ -135,8 +137,13 @@ const FAQPage = () => {
                 <Button
                   key={category.id}
                   variant={activeCategory === category.id ? "default" : "ghost"}
-                  className="w-full justify-start text-left"
-                  onClick={() => setActiveCategory(category.id)}
+                  className={`w-full justify-start text-left ${
+                    category.disabled 
+                      ? 'opacity-50 cursor-not-allowed text-gray-400' 
+                      : ''
+                  }`}
+                  onClick={() => !category.disabled && setActiveCategory(category.id)}
+                  disabled={category.disabled}
                 >
                   {category.icon}
                   <span className="ml-2 text-sm">{category.shortTitle}</span>
